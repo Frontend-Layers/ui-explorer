@@ -1,0 +1,35 @@
+{
+  "general": {
+    "data": [
+      {
+        "el": "outlines",
+        "active": true
+      }
+    ]
+  },
+  "outlines": {
+    "data": [
+      {
+        "el": "section",
+        "active": true,
+        "shrink": true,
+        "color": "#ff00ff",
+        "size": "1"
+      },
+      {
+        "el": "div",
+        "active": true,
+        "shrink": false,
+        "color": "#00ffff",
+        "size": "1"
+      },
+      {
+        "el": "p",
+        "active": true,
+        "shrink": false,
+        "color": "#cccccc",
+        "size": "1"
+      }
+    ]
+  }
+}

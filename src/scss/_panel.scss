@@ -1,0 +1,350 @@
+/**
+ * Panel
+ */
+.uie-panel {
+  all: initial;
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+.uie-panel * {
+  all: unset;
+  box-sizing: border-box;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+
+  a {
+    cursor: pointer;
+  }
+}
+
+.uie-colors-datalist {
+  display: none;
+}
+
+/**
+ * Grid
+ */
+
+.uie-panel-container {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+
+  position: fixed;
+  min-width: 160px;
+
+  top: 0;
+  left: 0;
+
+  padding: 0;
+
+
+  outline: 0;
+  background: #fff;
+  border: 1px dashed #000;
+
+  box-shadow: 1px 1px 3px #ccc;
+}
+
+.uie-panel-row {
+  display: flex;
+  align-items: center;
+
+  display: flex;
+  flex-direction: row;
+  padding: 1px;
+}
+
+.uie-panel-col {
+  display: flex;
+}
+
+.uie-panel-col-main {
+  width: 100%;
+}
+
+.uie-row {
+  display: flex;
+  align-items: center;
+}
+
+.uie-col-main {
+  width: 100%;
+}
+
+/**
+ * Header
+ */
+.uie-top-header {
+  font-size: 8px;
+
+  background: #fff;
+  display: block;
+  display: flex;
+}
+
+.uie-top-title {
+  width: 100%;
+  padding: 5px;
+}
+
+.uie-top-header-action {
+  display: flex;
+}
+
+.uie-top-header-action-btn {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3px;
+
+  background-color: #777;
+  mask-image: url($icon-x);
+  mask-size: 14px 14px;
+  mask-position: center;
+  mask-repeat: no-repeat;
+
+  &:hover {
+    background: #000;
+  }
+}
+
+
+/**
+ * Elements
+ */
+.uie-hr {
+  display: block;
+}
+
+.uie-block-title {
+  color: #777;
+
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  padding: 0;
+  margin: 0;
+}
+
+.uie-text-kbd {
+  font-size: 8px;
+  white-space: nowrap;
+  padding: 3px;
+
+  kbd {
+    background: #eee;
+    padding: 3px;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px #000;
+  }
+}
+
+.uie-text-kbd-custom {
+  display: block;
+}
+
+
+
+/**
+ * Accordion
+ */
+.uie-accordion-action {
+  color: #000;
+  text-decoration: none;
+
+  display: block;
+  position: relative;
+
+  padding: 3px;
+
+  background: #eee;
+
+  &:before {
+    content: '';
+    color: #777;
+
+    font-size: 18px;
+    line-height: 18px;
+    position: absolute;
+
+    top: 8px;
+    right: 3px;
+
+    width: 8px;
+    height: 8px;
+
+    background: url($icon-chevron-up) 0 0 no-repeat;
+    background-size: contain;
+  }
+
+  &.hide {
+    &:before {
+      transform: rotate(180deg);
+    }
+
+    ~ .uie-accordion-panel {
+      display: none;
+    }
+  }
+}
+
+.uie-accordion-panel {
+
+}
+
+/**
+ * Menu / Submenu
+ */
+.uie-btn-menu-toggle {
+  color: #ccc;
+  text-align: center;
+  text-decoration: none;
+  line-height: 12px;
+
+  display: block;
+  position: relative;
+
+  width: 12px;
+  height: 12px;
+  outline: 0;
+
+}
+
+.uie-panel-menu-action {
+  padding: 3px;
+}
+
+.uie-panel-menu-indicator {
+  width: 2px;
+  background: #ccc;
+}
+
+.uie-panel-menu-content {
+  padding: 3px;
+  width: 100%;
+  position: relative;
+
+  .uie-btn-shrink,
+  .uie-btn-remove {
+    display: none;
+  }
+
+  &:hover {
+    .uie-btn-shrink,
+    .uie-btn-remove {
+      display: block;
+    }
+  }
+}
+
+
+.uie-panel-sub {
+  display: block;
+
+  margin: 0;
+  padding: 5px 0;
+}
+
+.uie-panel-sub-item {
+  font-size: 10px;
+
+  display: block;
+
+  list-style: none;
+  margin: 0;
+  padding: 3px 0;
+}
+
+/**
+ * New Item
+ */
+
+.uie-new-item {
+  display: flex;
+  padding: 3px;
+}
+
+.uie-btn-add-new {
+  display: block;
+  padding: 3px;
+  background: #ccc;
+  margin-left: 3px;
+
+  width: 14px;
+  height: 14px;
+
+  background-color: #777;
+  background-size: contain;
+
+  mask-image: url($icon-plus-circle);
+  mask-size: 14px 14px;
+  margin-top: 1px;
+  mask-repeat: no-repeat;
+
+  &:hover {
+    opacity: .6;
+  }
+}
+
+
+.uie-btn-shrink {
+  position: absolute;
+  right: 20px;
+  top: 2px;
+
+  width: 17px;
+  height: 17px;
+
+  background: #777;
+
+  mask-image: url($icon-chevron-up);
+  mask-size: 8px 8px;
+  mask-position: center;
+  mask-repeat: no-repeat;
+
+  &:hover {
+    background-color: blue;
+  }
+
+  &.hide {
+    transform: rotate(180deg);
+
+    ~ .uie-panel-sub {
+      display: none;
+    }
+  }
+
+}
+
+.uie-btn-remove {
+  position: absolute;
+  right: 0;
+  top: 2px;
+
+  width: 17px;
+  height: 17px;
+
+  background-color: #777;
+
+  mask-image: url($icon-x);
+  mask-size: 14px 14px;
+  mask-position: center;
+  mask-repeat: no-repeat;
+
+  &:hover {
+    background-color: red;
+  }
+
+}
