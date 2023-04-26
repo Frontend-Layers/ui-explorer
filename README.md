@@ -7,12 +7,22 @@ _UI Explorer for html-base package_
 
 ## Why
 
-Lightweight and cozy tool for frontend developers on development stage to visualize page structure
+Lightweight and cozy frontend tool for development stage to visualize page structure
 
 ## Install
 
 ```shell
 npm i --save-dev ui-explorer
+```
+
+```javascript
+import 'ui-explorer';
+```
+
+## CDN
+
+```html
+<script src="https://unpkg.com/ui-explorer/build/javascript/app.js" defer></script>
 ```
 
 ## Contributing

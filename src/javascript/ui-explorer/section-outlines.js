@@ -35,7 +35,6 @@ export default function Section({ component, content }) {
         '${shrink}': node.shrink ? ' hide ' : '',
         'uie-bg-color': node.color
       });
-      console.log('node.color', node.color);
 
       // Append Outline elements into the Panel
       const templateContent = newTpl.content;

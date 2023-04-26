@@ -649,7 +649,6 @@
           '${shrink}': node.shrink ? ' hide ' : '',
           'uie-bg-color': node.color
         });
-        console.log('node.color', node.color);
 
         // Append Outline elements into the Panel
         var templateContent = newTpl.content;
@@ -781,7 +780,7 @@
    * Toggle Button
    */
 
-  var Datalist = function Datalist(cfg, component) {
+  var Datalist = function Datalist(component) {
     if (component) {
       var datalist = component.getElementById('uie-elements-datalist');
 
@@ -838,7 +837,7 @@
     Panel(cfg, ui.component);
 
     // Datalist
-    Datalist(cfg, ui.component);
+    Datalist(ui.component);
 
     /**
      * Sections

@@ -646,7 +646,6 @@ function Section(_ref) {
         '${shrink}': node.shrink ? ' hide ' : '',
         'uie-bg-color': node.color
       });
-      console.log('node.color', node.color);
 
       // Append Outline elements into the Panel
       var templateContent = newTpl.content;
@@ -778,7 +777,7 @@ function Section(_ref) {
  * Toggle Button
  */
 
-var Datalist = function Datalist(cfg, component) {
+var Datalist = function Datalist(component) {
   if (component) {
     var datalist = component.getElementById('uie-elements-datalist');
 
@@ -835,7 +834,7 @@ var UIExplorer = function UIExplorer(cfg) {
   Panel(cfg, ui.component);
 
   // Datalist
-  Datalist(cfg, ui.component);
+  Datalist(ui.component);
 
   /**
    * Sections
