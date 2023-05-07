@@ -31,7 +31,7 @@ class DB {
     for (let i = 0; i < data.length; i++) {
       const item = data[i];
 
-      if (item.el === key) {
+      if (item.el === key || item.name === key) {
         unique = false;
         break;
       }
@@ -39,10 +39,9 @@ class DB {
 
     if (unique) {
       data.push(item);
+      db[id].data = data;
+      localStorage.setItem('uie-db', JSON.stringify(db));
     }
-
-    db[id].data = data;
-    localStorage.setItem('uie-db', JSON.stringify(db));
   }
 
   /**

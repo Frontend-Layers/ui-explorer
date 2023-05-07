@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <div id="${id}" class="uie-mockup-tile${active}${statusbw}" tabindex="-1" ${styles}>
+    <!-- <output id="${id}Output"></output> -->
+    <div class="uie-mockup-tile-tools">
+      <ul class="uie-mockup-tile-tools-list">
+        <li class="uie-mockup-tile-tools-item">
+
+          <!-- Magnetize -->
+          <a href="#" class="uie-mockup-tile-tools-link uie-mockup-tile-btn-magnet" title="Magnetize to Nearest Element">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-magnet">
+              <path d="M8 1a7 7 0 0 0-7 7v3h4V8a3 3 0 0 1 6 0v3h4V8a7 7 0 0 0-7-7Zm7 11h-4v3h4v-3ZM5 12H1v3h4v-3ZM0 8a8 8 0 1 1 16 0v8h-6V8a2 2 0 1 0-4 0v8H0V8Z" />
+            </svg>
+          </a>
+        </li>
+        <li class="uie-mockup-tile-tools-item">
+
+          <!-- BW -->
+          <a href="#" class="uie-mockup-tile-tools-link uie-mockup-tile-btn-bw ${btnbw}" title="Grayscale Image">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" class="bi bi-circle-half">
+              <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+            </svg>
+          </a>
+        </li>
+        <li class="uie-mockup-tile-tools-item">
+
+          <!-- Crop -->
+          <a href="#" class="uie-mockup-tile-tools-link uie-mockup-tile-btn-crop" title="Crop">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" class="bi bi-crop" viewBox="0 0 16 16">
+              <path d="M3.5.5A.5.5 0 0 1 4 1v13h13a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2H3.5a.5.5 0 0 1-.5-.5V4H1a.5.5 0 0 1 0-1h2V1a.5.5 0 0 1 .5-.5zm2.5 3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4H6.5a.5.5 0 0 1-.5-.5z" />
+            </svg>
+          </a>
+        </li>
+        <li class="uie-mockup-tile-tools-item">
+
+          <!-- Offset -->
+          <a href="#" class="uie-mockup-tile-tools-link uie-mockup-tile-btn-offset" title="Offset">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" class="bi bi-arrows-move" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10zM.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8z" />
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <img class="uie-mockup-tile-img" src="${src}" alt="" ${imgstyle}>
+  </div>
+
+</body>
+</html>

@@ -65,7 +65,7 @@ const jsVendorLibs = () =>
 const watcher = () => {
   watch('./src/scss/**/*.scss', series(scss, cssCompress, stylesReload, scriptsReload));
   watch('./src/**/*.html', series(htmlGenerate, cleanDist, htmlReload, testHtml, htmlCompress, scriptsReload));
-  watch('./src/javascript/**/*.js', series(series(parallel(roll, rollES, rollUMD), jsVendorLibs), compressJS, scriptsReload));
+  watch('./src/javascript/**/*.js', series(series(parallel(roll), jsVendorLibs), compressJS, scriptsReload));
   watch('./src/images/**/*', imgCopy);
   watch('./src/favicons/**/*', copyIcons);
   watch('./src/fonts/**/*', copyFonts);

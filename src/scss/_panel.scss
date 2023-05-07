@@ -2,7 +2,6 @@
  * Panel
  */
 .uie-panel {
-  all: initial;
   display: none;
 
   &.active {
@@ -11,14 +10,6 @@
 }
 
 .uie-panel * {
-  all: unset;
-  box-sizing: border-box;
-
-  &::before,
-  &::after {
-    box-sizing: border-box;
-  }
-
   a {
     cursor: pointer;
   }
@@ -38,6 +29,7 @@
 
   position: fixed;
   min-width: 160px;
+  max-width: 168px;
 
   top: 0;
   left: 0;
@@ -50,6 +42,8 @@
   border: 1px dashed #000;
 
   box-shadow: 1px 1px 3px #ccc;
+
+  z-index: 1100;
 }
 
 .uie-panel-row {
@@ -92,6 +86,7 @@
 .uie-top-title {
   width: 100%;
   padding: 5px;
+  @include unselectable;
 }
 
 .uie-top-header-action {
@@ -125,6 +120,10 @@
   display: block;
 }
 
+.uie-block {
+  position: relative;
+}
+
 .uie-block-title {
   color: #777;
 
@@ -136,6 +135,8 @@
 
   padding: 0;
   margin: 0;
+
+  @include unselectable;
 }
 
 .uie-text-kbd {
@@ -153,6 +154,7 @@
 
 .uie-text-kbd-custom {
   display: block;
+  @include unselectable;
 }
 
 
@@ -194,14 +196,10 @@
       transform: rotate(180deg);
     }
 
-    ~ .uie-accordion-panel {
+    ~.uie-accordion-panel {
       display: none;
     }
   }
-}
-
-.uie-accordion-panel {
-
 }
 
 /**
@@ -242,6 +240,7 @@
   }
 
   &:hover {
+
     .uie-btn-shrink,
     .uie-btn-remove {
       display: block;
@@ -274,6 +273,7 @@
 .uie-new-item {
   display: flex;
   padding: 3px;
+  width: 100%;
 }
 
 .uie-btn-add-new {
@@ -298,7 +298,6 @@
   }
 }
 
-
 .uie-btn-shrink {
   position: absolute;
   right: 20px;
@@ -321,7 +320,7 @@
   &.hide {
     transform: rotate(180deg);
 
-    ~ .uie-panel-sub {
+    ~.uie-panel-sub {
       display: none;
     }
   }
@@ -346,5 +345,4 @@
   &:hover {
     background-color: red;
   }
-
 }

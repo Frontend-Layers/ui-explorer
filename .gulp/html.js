@@ -99,7 +99,7 @@ const htmlCompress = () =>
  */
 
 const testHtml = () =>
-  htmlTest('./dist/**/*.html');
+  htmlTest('./dist/**/*.html', { ignore: ['html/ignore-me/**', 'node_modules/**'], hide: 'js-literals'});
 
 /**
  * Detailed Validate HTML

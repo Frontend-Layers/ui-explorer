@@ -3,9 +3,8 @@ import Panel from './panel';
 import UI from './ui';
 import sectionGeneral from './section-general';
 import sectionOutlines from './section-outlines';
-import Datalist from './datalist';
+import sectionMockup from './section-mockup';
 import DB from './db';
-import Paint from './paint';
 
 const UIExplorer = (cfg) => {
   DB.init(cfg);
@@ -13,23 +12,21 @@ const UIExplorer = (cfg) => {
   const ui = UI(cfg);
 
   // UI Events
-  Btn(cfg, ui.component);
-  Panel(cfg, ui.component);
-
-  // Datalist
-  Datalist(ui.component);
+  Btn(cfg, ui);
+  Panel(cfg, ui);
 
   /**
    * Sections
    */
 
   // General Events
-  sectionGeneral(ui);
+  sectionGeneral(cfg, ui);
 
   // Outline Events
-  sectionOutlines(ui);
+  sectionOutlines(cfg.panel, ui);
 
-  Paint();
+  // Mockup Events
+  sectionMockup(cfg, ui);
 };
 
 export default UIExplorer;

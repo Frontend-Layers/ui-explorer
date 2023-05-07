@@ -16,6 +16,8 @@
 </head>
 <body>
 
+
+  <!-- Panel -->
   <div class="uie-panel" id="uiePanel">
     <div class="uie-panel-container">
 
@@ -58,36 +60,10 @@
 
             <div class="uie-panel-col">
               <div class="uie-text-kbd">
-                <a href="#" class="uie-text-kbd-custom"><kbd>Ctrl</kbd> + <kbd>~</kbd></a>
+                <a href="#" class="uie-text-kbd-custom">${keybind}</a>
               </div>
             </div>
           </div>
-
-
-
-          <!-- Mockups -->
-          <!-- <div class="uie-panel-row">
-          <div class="uie-panel-col uie-panel-col-main">
-
-            <div class="uie-panel-menu-content">
-
-              <label class="uie-label" for="mokups">
-                <input class="uie-checkbox" type="checkbox" id="mokups">
-
-                <span class="uie-label-text">
-                  Mokups
-                </span>
-              </label>
-            </div>
-          </div>
-
-          <div class="uie-panel-col">
-            <div class="uie-text-kbd">
-              <a href="#" class="uie-text-kbd-custom"><kbd>Ctrl</kbd> + <kbd>M</kbd></a>
-            </div>
-          </div>
-
-        </div> -->
 
         </div>
       </div><!-- /.uie-block -->
@@ -104,78 +80,122 @@
           </div>
         </a>
 
-        <div class="uie-accordion-panel" id="uieOutlinesContent">
+        <div class="uie-accordion-panel">
+          <div id="uieOutlinesContent">
 
+            <div class="uie-panel-row" id="${id}">
+              <div class="uie-panel-col uie-panel-col-main">
 
-          <div class="uie-panel-row" id="${id}">
-            <div class="uie-panel-col uie-panel-col-main">
-
-              <!-- <div class="uie-panel-menu-action">
+                <!-- <div class="uie-panel-menu-action">
               <div class="uie-panel-menu-action__content">
                 <a href="#" class="uie-btn-menu-toggle" title="Toggle Properties"></a>
               </div>
             </div> -->
 
-              <div class="uie-panel-menu-indicator" style="background-color: uie-bg-color;"></div>
-              <div class="uie-panel-menu-content">
-                <a href="#" class="uie-btn-shrink ${shrink}" title="Toggle Properties"></a>
-                <a href="#" class="uie-btn-remove" title="Remove"></a>
+                <div class="uie-panel-menu-indicator" style="background-color: uie-bg-color;"></div>
+                <div class="uie-panel-menu-content">
+                  <a href="#" class="uie-btn-shrink ${shrink}" title="Toggle Properties"></a>
+                  <a href="#" class="uie-btn-remove" title="Remove"></a>
 
-                <label class="uie-label" for="${cb_id}">
-                  <input class="uie-checkbox" type="checkbox" id="${cb_id}" ${cb_val}>
+                  <label class="uie-label" for="${cb_id}">
+                    <input class="uie-checkbox" type="checkbox" id="${cb_id}" ${cb_val}>
 
-                  <span class="uie-label-text">
-                    ${title}
-                  </span>
-                </label>
-
-                <ul class="uie-panel-sub">
-                  <li class="uie-panel-sub-item">
-
-                    <div class="uie-row">
-                      <div class="uie-col uie-col-main">
-                        <label class="uie-label" for="${id_color}">Color:</label>
-                      </div>
-                      <div class="uie-col">
-                        <input class="uie-color" type="color" id="${id_color}" value="${id_color_val}" list="uie-color-section-preset">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="uie-panel-sub-item">
-                    <div class="uie-row">
-                      <div class="uie-col uie-col-main">
-                        <label for="${id_width}">Width:</label>
-                      </div>
-                      <div class="uie-col">
-                        <input class="uie-number" type="number" id="${id_width}" value="${id_width_val}" min="1" max="3">
-                      </div>
-                    </div>
-                  </li>
-                  <!-- <li class="uie-panel-sub-item">
-                  <label for="uie-color-section-bg">
-                    Fill:
-                    <input class="uie-color" type="color" id="uie-color-section-bg" value="#ff00ff" list="uie-color-section-preset">
+                    <span class="uie-label-text">
+                      ${title}
+                    </span>
                   </label>
-                </li> -->
-                </ul>
+
+                  <ul class="uie-panel-sub">
+                    <li class="uie-panel-sub-item">
+
+                      <div class="uie-row">
+                        <div class="uie-col uie-col-main">
+                          <label class="uie-label" for="${id_color}">Color:</label>
+                        </div>
+                        <div class="uie-col">
+                          <input class="uie-color" type="color" id="${id_color}" value="${id_color_val}" list="uie-color-section-preset">
+                        </div>
+                      </div>
+                    </li>
+                    <li class="uie-panel-sub-item">
+                      <div class="uie-row">
+                        <div class="uie-col uie-col-main">
+                          <label for="${id_width}">Width:</label>
+                        </div>
+                        <div class="uie-col">
+                          <input class="uie-number" type="number" id="${id_width}" value="${id_width_val}" min="1" max="3">
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="uie-panel-row">
+            <div class="uie-panel-col uie-panel-col-main">
+
+              <div class="uie-new-item">
+                <input class="uie-input uie-new-outline-input" type="text" list="uie-elements-datalist">
+                <a class="uie-btn-add-new" href="#" aria-label="Add New Outline Element"></a>
               </div>
 
             </div>
           </div>
+
+        </div>
+      </div><!-- /.uie-block -->
+
+
+      <!-- Block | Mockup -->
+      <div class="uie-block" id="uieMockup">
+
+        <!-- Mockup -->
+        <a href="#" class="uie-accordion-action">
+          <div class="uie-hr">
+            <h3 class="uie-block-title">Mockups</h3>
+          </div>
+        </a>
+
+        <div class="uie-mockup-preview">
+          <img class="uie-mockup-preview-img" src="https://picsum.photos/50/50" alt="">
         </div>
 
-        <div class="uie-panel-row">
-          <div class="uie-panel-col uie-panel-col-main">
+        <div class="uie-accordion-panel">
 
-            <div class="uie-new-item">
-              <input class="uie-input" type="text" list="uie-elements-datalist">
-              <a class="uie-btn-add-new" href="#" aria-label="Add New Outline Element"></a>
+          <div id="uieMockupContent" class="uie-mockup-list">
+            <div class="uie-mockup-item" id="${id}">
+              <label class="uie-mockup-label" for="${cb_id}">
+                <input class="uie-mockup-cb" type="checkbox" id="${cb_id}" ${cb_val}>
+                <picture class="uie-mockup-pict">
+                  <img class="uie-mockup-thumb" src="${src}" alt="">
+                </picture>
+              </label>
+
+              <a href="#" class="uie-btn-remove-link" title="Remove Mockup">
+                <span class="uie-btn-remove"></span>
+              </a>
             </div>
 
+            <div class="uie-mockup-btn-upload">
+              <div class="uie-mockup-btn-upload-content">
+                <label class="uie-mockup-label-upload" for="uie-mockup-input-upload">
+                  <input type="file" id="uie-mockup-input-upload" class="uie-mockup-input-upload" accept="image/*">
+                </label>
+              </div>
+            </div>
           </div>
-        </div>
 
+        </div>
       </div><!-- /.uie-block -->
+
+
+
+
+
+
 
 
 

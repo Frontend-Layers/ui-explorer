@@ -1,16 +1,25 @@
-import { getBodyContent, decodeRollupUrl } from './utils';
-
 /**
  * Render Component UI
  *
  * @param {*} cfg
  */
 function UI(cfg) {
+  initUIComponent(cfg);
+
+  const uiExplorer = document.querySelector('ui-explorer');
+  if (uiExplorer) {
+    return uiExplorer.shadowRoot;
+  }
+
+  return false;
+};
+
+function initUIComponent(cfg) {
 
   // Get Frontend Resources
-  const btnHtml = getBodyContent(decodeRollupUrl(cfg.btn.html, 'html'));
-  const panelHtml = getBodyContent(decodeRollupUrl(cfg.panel.html, 'html'));
-  const mainStyles = `<style>@import url("${cfg.styles}");</style>`;
+  const btnHtml = cfg.btn.html;
+  const panelHtml = cfg.panel.html;
+  const mainStyles = cfg.styles;
 
   // HTML template content
   const newTpl = document.createElement('template');
@@ -18,7 +27,7 @@ function UI(cfg) {
   const templateContent = newTpl.content;
 
   /**
-   * Web Component
+   * UI Web Component
    */
   class UIExplorer extends HTMLElement {
 
@@ -35,13 +44,6 @@ function UI(cfg) {
   customElements.define('ui-explorer', UIExplorer);
   const wcUie = document.createElement('ui-explorer');
   document.body.appendChild(wcUie);
-
-  const uiExplorer = document.querySelector('ui-explorer');
-  if (uiExplorer) {
-    return { component: uiExplorer.shadowRoot, content: panelHtml };
-  }
-
-  return false;
-};
+}
 
 export default UI;

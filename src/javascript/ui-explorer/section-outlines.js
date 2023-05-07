@@ -1,9 +1,11 @@
 import DB from './db';
 import tpl from './tpl';
 import { getColor } from './utils';
-import Paint from './paint';
+import Paint from './section-outlines-paint';
 
-export default function Section({ component, content }) {
+export default function Section(cfg, ui) {
+  Paint();
+
   const dbID = 'outlines';
   const blockId = '#uieOutlines';
   const sectionId = '#uieOutlinesContent';
@@ -11,12 +13,12 @@ export default function Section({ component, content }) {
   function render() {
 
     // Clear Outline Section
-    const elSection = component.querySelector(sectionId);
+    const elSection = ui.querySelector(sectionId);
     elSection.innerHTML = '';
 
     // Get Outline element HTML
     const parser = new DOMParser();
-    const docSection = parser.parseFromString(content, 'text/html');
+    const docSection = parser.parseFromString(cfg.html, 'text/html');
     const rawInnerHTML = docSection.querySelector(sectionId).innerHTML;
 
     // Apply properties
@@ -44,7 +46,7 @@ export default function Section({ component, content }) {
     /**
      * Toggle Section Properties
      */
-    const btnShrink = component.querySelectorAll(`${sectionId} .uie-btn-shrink`);
+    const btnShrink = ui.querySelectorAll(`${sectionId} .uie-btn-shrink`);
     if (btnShrink) {
       btnShrink.forEach(element => {
         element.addEventListener('click', (e) => {
@@ -63,7 +65,7 @@ export default function Section({ component, content }) {
     /**
      * Remove Button
      */
-    const btnRemove = component.querySelectorAll(`${sectionId} .uie-btn-remove`);
+    const btnRemove = ui.querySelectorAll(`${sectionId} .uie-btn-remove`);
     if (btnRemove) {
       btnRemove.forEach(element => {
         element.addEventListener('click', (e) => {
@@ -83,36 +85,59 @@ export default function Section({ component, content }) {
     /**
      * Add Button
      */
-    const btnAddNew = component.querySelector(`${blockId} .uie-btn-add-new`);
+    const btnAddNew = ui.querySelector(`${blockId} .uie-btn-add-new`);
+    const elInput = ui.querySelector('.uie-new-outline-input');
     if (btnAddNew) {
       btnAddNew.addEventListener('click', (e) => {
         e.preventDefault();
-        const elInput = component.querySelector('.uie-input');
+        getInput(elInput);
+      });
+    }
 
-        if (elInput && elInput.value) {
-          const val = elInput.value;
-          const elVal = document.querySelector(val);
-
-          if (elVal) {
-            const item = {
-              el: val,
-              active: true,
-              color: getColor(),
-              size: '1'
-            };
-
-            DB.add(dbID, val, item);
-            render();
-            Paint();
-          }
+    /**
+     * Input Enter
+     */
+    if (elInput) {
+      elInput.addEventListener('keypress', function(event) {
+      // If the user presses the "Enter" key on the keyboard
+        if (event.key === 'Enter') {
+          getInput(elInput);
         }
       });
     }
 
     /**
+     * Input action
+     *
+     * @param {*} elInput
+     */
+    function getInput(elInput) {
+      if (elInput && elInput.value) {
+        const val = elInput.value;
+        const elVal = document.querySelector(val);
+
+        if (elVal) {
+          const item = {
+            el: val,
+            active: true,
+            color: getColor(),
+            size: '1',
+            shrink: true
+          };
+
+          DB.add(dbID, val, item);
+          render();
+          Paint();
+        }
+
+        elInput.value = '';
+      }
+    }
+
+    /**
      * Toggle Visibility
      */
-    const cbInputs = component.querySelectorAll(`${sectionId} .uie-checkbox`);
+    const cbInputs = ui.querySelectorAll(`${sectionId} .uie-checkbox`);
     if (cbInputs) {
       cbInputs.forEach(element => {
         element.addEventListener('change', (e) => {
@@ -130,7 +155,7 @@ export default function Section({ component, content }) {
     /**
      * Change Outline Size
      */
-    const inNumber = component.querySelectorAll(`${sectionId} .uie-number`);
+    const inNumber = ui.querySelectorAll(`${sectionId} .uie-number`);
     if (inNumber) {
       inNumber.forEach(element => {
         element.addEventListener('change', (e) => {
@@ -148,7 +173,7 @@ export default function Section({ component, content }) {
     /**
      * Change Background
      */
-    const inColor = component.querySelectorAll(`${sectionId} .uie-color`);
+    const inColor = ui.querySelectorAll(`${sectionId} .uie-color`);
     if (inColor) {
       inColor.forEach(element => {
         element.addEventListener('change', (e) => {

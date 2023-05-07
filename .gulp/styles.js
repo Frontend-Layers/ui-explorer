@@ -1,5 +1,6 @@
 import gulp from 'gulp';
 const { src, dest } = gulp;
+import cleanCSS from 'gulp-clean-css';
 
 /**
  * System
@@ -20,14 +21,6 @@ import size from 'gulp-size';
 import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 const sass = gulpSass(dartSass);
-
-import postcss from 'gulp-postcss';
-import autoprefixer from 'autoprefixer';
-
-/**
- * Compressor
- */
-import cssnano from 'cssnano';
 
 /**
  * Source Map
@@ -82,7 +75,7 @@ const stylesReload = () => src(cfg.dest.scss)
 const cssCompress = (done) =>
   src('./src/styles/**/*.css')
     .pipe(plumber())
-    .pipe(postcss([autoprefixer(), cssnano()]))
+    .pipe(cleanCSS())
     .on('error', notify.onError())
     .pipe(dest('./dist/styles/'))
     .pipe(dest('./build/styles/'))

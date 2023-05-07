@@ -1,15 +1,17 @@
 import DB from './db';
 import tpl from './tpl';
-import Paint from './paint';
+import OutlinesPaint from './section-outlines-paint';
+import TilesPaint from './section-mockup-tile-paint';
 
-export default function Section({ component, content }) {
+export default function Section(cfg, ui) {
   const dbID = 'general';
   const sectionId = '#uieGeneralContent';
+  const content = ui.innerHTML;
 
   function render() {
 
     // Clear Outline Section
-    const elSection = component.querySelector(sectionId);
+    const elSection = ui.querySelector(sectionId);
     elSection.innerHTML = '';
 
     // Get Outline element HTML
@@ -26,7 +28,8 @@ export default function Section({ component, content }) {
         '${id}': 'uie' + dbID + node.el,
         '${cb_id}': 'uie' + dbID + node.el + 'Cb',
         '${cb_val}': node.active ? ' checked ' : '',
-        '${title}': node.el
+        '${title}': node.el,
+        '${keybind}': getKeyBind(node.keybind)
       });
 
       // Append Outline elements into the Panel
@@ -35,9 +38,24 @@ export default function Section({ component, content }) {
     });
 
     /**
+     * Get Key Bind from Data
+     */
+    function getKeyBind(keybind) {
+      let s = '';
+
+      if (keybind) {
+        keybind.forEach(item => {
+          s += `<kbd>${item}</kbd>`;
+        });
+      }
+
+      return s;
+    }
+
+    /**
      * Toggle Visibility
      */
-    const cbInputs = component.querySelectorAll(`${sectionId} .uie-checkbox`);
+    const cbInputs = ui.querySelectorAll(`${sectionId} .uie-checkbox`);
     if (cbInputs) {
       cbInputs.forEach(element => {
         element.addEventListener('change', (e) => {
@@ -46,7 +64,8 @@ export default function Section({ component, content }) {
           const key = parent.id;
 
           DB.update(dbID, key, { active: target.checked });
-          Paint();
+          OutlinesPaint();
+          TilesPaint(cfg);
         });
       });
     }
@@ -54,16 +73,16 @@ export default function Section({ component, content }) {
   }
 
   /**
-     * Show/Hide outlines by Keyboard shortcut
-     */
+   * Show/Hide outlines by Keyboard shortcut
+   */
   document.addEventListener('keydown', (e) => {
 
     if (e.code === 'Backquote' && e.ctrlKey) {
-      const outlines = component.querySelector(`${sectionId} #uiegeneraloutlinesCb`);
+      const outlines = ui.querySelector(`${sectionId} #uiegeneraloutlinesCb`);
       if (outlines) {
         outlines.checked ^= 1;
         outlines.dispatchEvent(new Event('change'));
-        Paint();
+        OutlinesPaint();
       }
     };
 
