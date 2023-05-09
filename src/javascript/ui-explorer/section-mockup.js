@@ -26,17 +26,20 @@ export default function Section(cfg, ui) {
     const data = DB.get(dbID).data;
 
     data.forEach(node => {
-      const newTpl = document.createElement('template');
-      newTpl.innerHTML = tpl(rawInnerHTML, {
-        '${id}': 'uie' + dbID + node.el,
-        '${cb_id}': 'uie' + dbID + node.el + 'Cb',
-        '${cb_val}': node.active ? ' checked ' : '',
-        '${src}': node.thumb
-      });
 
-      // Append Outline elements into the Panel
-      const templateContent = newTpl.content;
-      elSection.appendChild(templateContent.cloneNode(true));
+      if (node.thumb) {
+        const newTpl = document.createElement('template');
+        newTpl.innerHTML = tpl(rawInnerHTML, {
+          '${id}': 'uie' + dbID + node.el,
+          '${cb_id}': 'uie' + dbID + node.el + 'Cb',
+          '${cb_val}': node.active ? ' checked ' : '',
+          '${src}': node.thumb
+        });
+
+        // Append Outline elements into the Panel
+        const templateContent = newTpl.content;
+        elSection.appendChild(templateContent.cloneNode(true));
+      }
     });
 
     // Append Upload Button

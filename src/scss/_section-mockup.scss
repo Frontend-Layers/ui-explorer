@@ -39,7 +39,7 @@
 }
 
 .uie-mockup-cb {
-  visibility: hidden;
+  display: none;
 
   &:checked {
     ~.uie-mockup-pict {

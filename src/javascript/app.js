@@ -1,5 +1,6 @@
 import { getBodyContent, decodeRollupUrl } from 'src/ui-explorer/utils';
 import UIExplorer from 'src/ui-explorer';
+import tpl from './ui-explorer/tpl';
 
 /**
  * Import Resources
@@ -9,6 +10,10 @@ import panelHTML from 'root/dist/panel.html';
 import tileHTML from 'root/dist/tile.html';
 import styles from 'root/dist/styles/main.css';
 import data from 'root/src/json/default.json';
+import dataPackageJson from 'root/package.json';
+
+const appVerion = dataPackageJson.version;
+data.version = appVerion;
 
 const cfg = {
   btn: {
@@ -16,14 +21,14 @@ const cfg = {
     id: 'uieBtn'
   },
   panel: {
-    html: getBodyContent(decodeRollupUrl(panelHTML, 'html')),
+    html: tpl(getBodyContent(decodeRollupUrl(panelHTML, 'html')), { '${version}': appVerion }),
     id: 'uiePanel'
   },
   tile: {
     html: getBodyContent(decodeRollupUrl(tileHTML, 'html')),
     id: 'uieTile'
   },
-  styles: `<style>@import url("${styles}");</style>`,
+  styles: `<style type="text/css">${styles}</style>`,
   data
 };
 

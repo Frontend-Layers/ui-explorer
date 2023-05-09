@@ -33,6 +33,10 @@ import url from '@rollup/plugin-url';
 import standard from 'gulp-standard';
 import json from '@rollup/plugin-json';
 
+import compiler from '@ampproject/rollup-plugin-closure-compiler';
+import postcss from 'rollup-plugin-postcss';
+import autoprefixer from 'autoprefixer';
+
 const __dirname = path.resolve(path.dirname(''));
 
 
@@ -72,6 +76,16 @@ const cfg = {
 const rollCfg = {
   input: cfg.roll.input,
   plugins: [
+    postcss({
+      modules: false,
+      extract: false,
+      namedExports: false,
+      inject: false,
+      plugins: [
+        autoprefixer(),
+      ]
+    }),
+    compiler(),
     babel({
       exclude: "node_modules/**",
       presets: ["@babel/preset-env"],
@@ -94,10 +108,10 @@ const rollCfg = {
     }),
     json(),
     url({
-      include: ['**/*.css', '**/*.html', '**/*.svg', '**/*.png', '**/*.jp(e)?g', '**/*.gif', '**/*.webp']
+      include: ['**/*.html', '**/*.svg', '**/*.png', '**/*.jp(e)?g', '**/*.gif', '**/*.webp']
     })
   ],
-}
+};
 
 
 /**
