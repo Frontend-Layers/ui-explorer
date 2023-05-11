@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.5]
+
+- minor updates
+
 ## [1.1.3]
 
 - removed img ${src} warning from browser console

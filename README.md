@@ -53,7 +53,7 @@ import 'ui-explorer';
 - Keyboard hot keys
 - Magnetize Tile to Page element
 
-## Offset
+### Mockup Offset
 
 - Double click - back image to init position
 
@@ -62,9 +62,8 @@ import 'ui-explorer';
 | Keys                        | Action                  |
 |-----------------------------|-------------------------|
 | <kbd>Ctrl</kbd><kbd>~</kbd> | Show/Hide Outlines      |
-| <kbd>Ctrl</kbd><kbd>M</kbd> | Show/Hide Mockups       |
 
-## Mockup Hotkeys
+### Mockup Hotkeys
 
 | Keys                                                 | Action                        |
 |------------------------------------------------------|-------------------------------|
