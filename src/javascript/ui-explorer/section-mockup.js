@@ -33,7 +33,7 @@ export default function Section(cfg, ui) {
           '${id}': 'uie' + dbID + node.el,
           '${cb_id}': 'uie' + dbID + node.el + 'Cb',
           '${cb_val}': node.active ? ' checked ' : '',
-          '${src}': node.thumb
+          'https://${src}': node.thumb
         });
 
         // Append Outline elements into the Panel

@@ -12,7 +12,7 @@ import { scss, cssCompress, stylesReload } from './.gulp/styles.js';
 import { roll, rollES, rollUMD, scriptsReload, compressJS } from './.gulp/javascript.js';
 
 // HTML
-import { htmlGenerate, htmlReload, htmlCompress, testHtml } from './.gulp/html.js';
+import { htmlGenerate, htmlReload, testHtml } from './.gulp/html.js';
 
 // Images
 import { imagesCompress, webpCompress, genSvgSprite, imgCopy } from './.gulp/images.js';
@@ -65,7 +65,7 @@ const jsVendorLibs = () =>
 const watcher = () => {
   watch('./src/scss/**/*.scss', series(scss, cssCompress, stylesReload, scriptsReload));
   watch('./src/**/*.html', series(htmlGenerate, cleanDist, htmlReload, testHtml, scriptsReload));
-  watch('./src/javascript/**/*.js', series(series(parallel(roll), jsVendorLibs), compressJS, scriptsReload));
+  watch('./src/javascript/**/*.js', series(series(parallel(roll), jsVendorLibs), scriptsReload));
   watch('./src/images/**/*', imgCopy);
   watch('./src/favicons/**/*', copyIcons);
   watch('./src/fonts/**/*', copyFonts);
@@ -105,9 +105,8 @@ const build = series(
   clean,
   copyBuildFiles,
   parallel(
-    // series(series(parallel(roll, rollES, rollUMD), jsVendorLibs), compressJS),
     series(htmlGenerate, cleanDist),
-    series(series(roll, jsVendorLibs), compressJS),
+    series(series(parallel(roll, rollES, rollUMD), jsVendorLibs), compressJS),
     series(scss, cssCompress),
     series(imgCopy)
   ),

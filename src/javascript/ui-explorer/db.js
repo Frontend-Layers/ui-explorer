@@ -75,12 +75,6 @@ class DB {
     // Check is DB presented
     if (!db) {
       localStorage.setItem('uie-db', JSON.stringify(data));
-    } else {
-
-      // Check actual DB version
-      if (db.version !== data.version) {
-        localStorage.setItem('uie-db', JSON.stringify(data));
-      }
     }
   }
 

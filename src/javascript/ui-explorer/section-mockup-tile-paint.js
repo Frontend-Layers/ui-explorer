@@ -510,7 +510,7 @@ function renderMockupTiles(styles, tile) {
         newTpl.shadowRoot.innerHTML = styles + tpl(tile, {
           '${id}': uid,
           '${active}': node.active ? '' : ' hide ',
-          '${src}': node.thumb,
+          'https://${src}': node.thumb,
           '${styles}': `style="width:${node.crop.width}px; height:${node.crop.height}px; top: ${node.position.top}px; left: ${node.position.left}px; z-index: ${node.zindex}"`,
           '${imgstyle}': `style="opacity:${node.opacity}; top: ${node.offset.top}px; left: ${node.offset.left}px;"`,
           '${btnbw}': node.grayscale ? ' active ' : '',

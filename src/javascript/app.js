@@ -1,5 +1,5 @@
-import { getBodyContent, decodeRollupUrl } from 'src/ui-explorer/utils';
-import UIExplorer from 'src/ui-explorer';
+import { getBodyContent, decodeRollupUrl } from './ui-explorer/utils';
+import UIExplorer from './ui-explorer';
 import tpl from './ui-explorer/tpl';
 
 /**

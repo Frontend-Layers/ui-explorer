@@ -33,12 +33,10 @@ import url from '@rollup/plugin-url';
 import standard from 'gulp-standard';
 import json from '@rollup/plugin-json';
 
-import compiler from '@ampproject/rollup-plugin-closure-compiler';
 import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
 
 const __dirname = path.resolve(path.dirname(''));
-
 
 /**
  * Settings
@@ -61,13 +59,13 @@ const cfg = {
     format: 'iife',
   },
   rollES: {
-    input: './src/javascript/ui-explorer/index.js',
-    output: './dist/javascript/ui-explorer.es.js',
+    input: './src/javascript/app/ui-explorer/index.js',
+    output: './dist/javascript/app/ui-explorer.es.js',
     format: 'es',
   },
   rollUMD: {
-    input: './src/javascript/ui-explorer/index.js',
-    output: './dist/javascript/ui-explorer.umd.js',
+    input: './src/javascript/app/ui-explorer/index.js',
+    output: './dist/javascript/app/ui-explorer.umd.js',
     format: 'umd',
   }
 };
@@ -85,7 +83,6 @@ const rollCfg = {
         autoprefixer(),
       ]
     }),
-    compiler(),
     babel({
       exclude: "node_modules/**",
       presets: ["@babel/preset-env"],
@@ -180,6 +177,7 @@ const compressJS = () =>
   src('./dist/javascript/**/*.js')
     .pipe(plumber())
     .pipe(uglify())
+    // .pipe(gulpClosureCompiler())
     .on('error', notify.onError())
     .pipe(size())
     .pipe(dest('./build/javascript/'));

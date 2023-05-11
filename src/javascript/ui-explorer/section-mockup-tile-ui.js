@@ -13,6 +13,8 @@ export default function uiTile(cfg) {
   const newTpl = document.createElement('template');
   newTpl.innerHTML = mainStyles + tileHtml;
   const templateContent = newTpl.content;
+  const img = templateContent.querySelector('img');
+  img.setAttribute('src', '');
 
   /**
    * UI Web Component
@@ -31,3 +33,5 @@ export default function uiTile(cfg) {
   // Add componet to Page
   customElements.define('uie-tile', TileComponent);
 }
+
+//    ShadowRoot.appendChild(templateConte
