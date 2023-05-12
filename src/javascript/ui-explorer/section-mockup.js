@@ -31,8 +31,10 @@ export default function Section(cfg, ui) {
         const newTpl = document.createElement('template');
         newTpl.innerHTML = tpl(rawInnerHTML, {
           '${id}': 'uie' + dbID + node.el,
-          '${cb_id}': 'uie' + dbID + node.el + 'Cb',
-          '${cb_val}': node.active ? ' checked ' : '',
+          '${out_id}': 'uie' + dbID + node.el + 'Cb',
+          '${out_val}': node.status,
+          '${statusClass}': getClassStatus(node.status),
+          '${statusTitle}': getTitleStatus(node.status),
           'https://${src}': node.thumb
         });
 
@@ -47,7 +49,6 @@ export default function Section(cfg, ui) {
 
     /**
      * Upload By Drag&Drop
-     * ref: https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
      */
     const uieMockupUpload = elSection.querySelector('.uie-mockup-btn-upload');
     if (uieMockupUpload) {
@@ -163,7 +164,7 @@ export default function Section(cfg, ui) {
                   name,
                   el,
                   thumb: reader.result,
-                  active: true,
+                  status: '2',
                   opacity: '0.5',
                   zindex: 100,
                   grayscale: false,
@@ -215,25 +216,100 @@ export default function Section(cfg, ui) {
     /**
      * Toggle Visibility
      */
-    const cbInputs = ui.querySelectorAll(`${sectionId} .uie-mockup-cb`);
+    const cbInputs = ui.querySelectorAll(`${sectionId} .uie-mockup-label`);
     if (cbInputs) {
       cbInputs.forEach(element => {
-        element.addEventListener('change', (e) => {
-          const target = e.target;
+        element.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = e.currentTarget;
+          const output = target.querySelector('.uie-mockup-out');
 
-          const parent = target.closest('.uie-mockup-item');
-          const key = parent.id;
+          if (output) {
+            switch (output.value) {
+              case '1':
+                output.value = '2';
+                target.classList.remove('uie-mockup-label--noevents');
+                target.classList.remove('uie-mockup-label--hide');
+                break;
+              case '2':
+                output.value = '3';
+                target.classList.add('uie-mockup-label--noevents');
+                target.classList.remove('uie-mockup-label--hide');
+                break;
+              case '3':
+                output.value = '1';
+                target.classList.remove('uie-mockup-label--noevents');
+                target.classList.add('uie-mockup-label--hide');
+                break;
+              default:
+                output.value = '1';
+                target.classList.remove('uie-mockup-label--noevents');
+                target.classList.remove('uie-mockup-label--hide');
+                break;
+            }
 
-          DB.update(dbID, key, { active: target.checked });
-          Paint(cfg);
+            const parent = target.closest('.uie-mockup-item');
+            const key = parent.id;
+
+            DB.update(dbID, key, { status: output.value });
+            Paint(cfg);
+            target.setAttribute('title', getTitleStatus(output.value));
+          }
         });
       });
     }
 
-    // sectionMockupTiles(cfg, tile);
   } // render()
 
   uiTile(cfg);
   Paint(cfg);
   render();
+}
+
+/**
+ * Get Class Name for Label by Thumbnail Status
+ *
+ * @param {*} status
+ * @returns
+ */
+function getClassStatus(status) {
+
+  switch (status) {
+    case '1':
+      return 'uie-mockup-label--hide';
+      break;
+    case '2':
+      return '';
+      break;
+    case '3':
+      return 'uie-mockup-label--noevents';
+      break;
+    default:
+      return '';
+      break;
+  }
+}
+
+/**
+ * Get Title for Label by Thumbnail Status
+ *
+ * @param {*} status
+ * @returns
+ */
+function getTitleStatus(status) {
+
+  switch (status) {
+    case '1':
+      return 'Hide Tile';
+      break;
+    case '2':
+      return 'Show Tile';
+      break;
+    case '3':
+      return 'Inactive Tile';
+      break;
+    default:
+      return 'Show Tile';
+      break;
+  }
 }

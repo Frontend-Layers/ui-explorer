@@ -1,6 +1,6 @@
 {
   "name": "ui-explorer",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "description": "UI Explorer",
   "directories": {
     "test": "tests"
@@ -16,7 +16,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andreymatin/ui-explorer.git"
+    "url": "git+https://github.com/frontend-layers/ui-explorer.git"
   },
   "keywords": [
     "css",
@@ -24,17 +24,17 @@
     "html"
   ],
   "bugs": {
-    "url": "https://github.com/andreymatin/ui-explorer/issues"
+    "url": "https://github.com/frontend-layers/ui-explorer/issues"
   },
   "type": "module",
-  "homepage": "https://github.com/andreymatin/ui-explorer/",
+  "homepage": "https://github.com/frontend-layers/ui-explorer/",
   "devDependencies": {
     "@babel/core": "^7.21.8",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/preset-env": "^7.21.5",
     "@rollup/plugin-alias": "^5.0.0",
     "@rollup/plugin-babel": "^6.0.3",
-    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@rollup/plugin-terser": "^0.4.1",
@@ -90,6 +90,6 @@
     "rollup-plugin-postcss": "^4.0.2",
     "sass": "^1.62.1",
     "scss-mixins-npm": "^1.0.6",
-    "scss-reset": "^1.3.8"
+    "scss-reset": "^1.4.2"
   }
 }

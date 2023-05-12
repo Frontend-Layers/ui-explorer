@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.0]
+
+- added 'Inactive' mode for Mockup Tile to avoid any Events when work on HTML sturcture by DevTools Inspector
+
 ## [1.1.5]
 
 - minor updates

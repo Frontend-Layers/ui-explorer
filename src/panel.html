@@ -22,7 +22,7 @@
     <div class="uie-panel-container">
 
       <div class="uie-top-header">
-        <div class="uie-top-title"><a href="https://github.com/andreymatin/ui-explorer" target="_blank">UI Explorer ${version}</a></div>
+        <div class="uie-top-title"><a href="https://github.com/frontend-layers/ui-explorer" target="_blank">UI Explorer ${version}</a></div>
         <div class="uie-top-header-action">
           <a class="uie-top-header-action-btn" href="btn.html" title="Hide Panel [Esc]"></a>
         </div>
@@ -167,8 +167,8 @@
 
           <div id="uieMockupContent" class="uie-mockup-list">
             <div class="uie-mockup-item" id="${id}">
-              <label class="uie-mockup-label" for="${cb_id}">
-                <input class="uie-mockup-cb" type="checkbox" id="${cb_id}" ${cb_val}>
+              <label class="uie-mockup-label ${statusClass}" for="${out_id}" title="${statusTitle}">
+                <output class="uie-mockup-out" id="${out_id}">${out_val}</output>
                 <picture class="uie-mockup-pict">
                   <img class="uie-mockup-thumb" src="https://${src}" alt="">
                 </picture>

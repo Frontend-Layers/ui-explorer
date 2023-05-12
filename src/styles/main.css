@@ -696,27 +696,23 @@ label {
   top: 0;
 }
 
-.uie-mockup-cb {
+.uie-mockup-out {
   display: none;
-}
-.uie-mockup-cb:checked ~ .uie-mockup-pict:before {
-  display: none;
-}
-.uie-mockup-cb:checked ~ .uie-mockup-pict .uie-mockup-thumb {
-  opacity: 1;
-  border: 1px solid #000;
 }
 
 .uie-mockup-thumb {
   width: 50px;
   height: 50px;
-  opacity: 0.2;
-  border: 1px solid #fff;
+  opacity: 1;
   position: relative;
   display: block;
 }
 
+.uie-mockup-pict {
+  border: 1px solid #fff;
+}
 .uie-mockup-pict:before {
+  display: none;
   content: "";
   position: absolute;
   left: 50%;
@@ -734,6 +730,26 @@ label {
   position: relative;
   width: 50px;
   height: 50px;
+}
+.uie-mockup-label.uie-mockup-label--noevents .uie-mockup-pict {
+  border: 1px solid #000;
+}
+.uie-mockup-label.uie-mockup-label--noevents .uie-mockup-pict:before {
+  display: block;
+  content: "";
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktZXhjbGFtYXRpb24tdHJpYW5nbGUiIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgPHBhdGggZD0iTTcuOTM4IDIuMDE2QS4xMy4xMyAwIDAgMSA4LjAwMiAyYS4xMy4xMyAwIDAgMSAuMDYzLjAxNi4xNDYuMTQ2IDAgMCAxIC4wNTQuMDU3bDYuODU3IDExLjY2N2MuMDM2LjA2LjAzNS4xMjQuMDAyLjE4M2EuMTYzLjE2MyAwIDAgMS0uMDU0LjA2LjExNi4xMTYgMCAwIDEtLjA2Ni4wMTdIMS4xNDZhLjExNS4xMTUgMCAwIDEtLjA2Ni0uMDE3LjE2My4xNjMgMCAwIDEtLjA1NC0uMDYuMTc2LjE3NiAwIDAgMSAuMDAyLS4xODNMNy44ODQgMi4wNzNhLjE0Ny4xNDcgMCAwIDEgLjA1NC0uMDU3em0xLjA0NC0uNDVhMS4xMyAxLjEzIDAgMCAwLTEuOTYgMEwuMTY1IDEzLjIzM2MtLjQ1Ny43NzguMDkxIDEuNzY3Ljk4IDEuNzY3aDEzLjcxM2MuODg5IDAgMS40MzgtLjk5Ljk4LTEuNzY3TDguOTgyIDEuNTY2eiIvPgogIDxwYXRoIGQ9Ik03LjAwMiAxMmExIDEgMCAxIDEgMiAwIDEgMSAwIDAgMS0yIDB6TTcuMSA1Ljk5NWEuOTA1LjkwNSAwIDEgMSAxLjggMGwtLjM1IDMuNTA3YS41NTIuNTUyIDAgMCAxLTEuMSAwTDcuMSA1Ljk5NXoiLz4KPC9zdmc+");
+}
+.uie-mockup-label.uie-mockup-label--noevents .uie-mockup-pict .uie-mockup-thumb {
+  opacity: 0.2;
+}
+.uie-mockup-label.uie-mockup-label--hide .uie-mockup-pict {
+  border: 1px solid #000;
+}
+.uie-mockup-label.uie-mockup-label--hide .uie-mockup-pict:before {
+  display: block;
+}
+.uie-mockup-label.uie-mockup-label--hide .uie-mockup-pict .uie-mockup-thumb {
+  opacity: 0.2;
 }
 
 .uie-mockup-cb-status {
@@ -816,6 +832,9 @@ label {
 }
 .uie-mockup-tile.hide {
   display: none;
+}
+.uie-mockup-tile.noevents {
+  pointer-events: none;
 }
 .uie-mockup-tile.active {
   box-shadow: 0 0 0 1px #000;

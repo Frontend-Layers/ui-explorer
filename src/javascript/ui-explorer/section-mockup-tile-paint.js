@@ -15,254 +15,254 @@ export default function Paint(cfg) {
       mockupTile.forEach(item => {
 
         const element = item.shadowRoot.querySelector('.uie-mockup-tile');
-        const btnCrop = element.querySelector('.uie-mockup-tile-btn-crop');
-        const btnOffset = element.querySelector('.uie-mockup-tile-btn-offset');
-        const btnBW = element.querySelector('.uie-mockup-tile-btn-bw');
-        const btnMag = element.querySelector('.uie-mockup-tile-btn-magnet');
+        if (element) {
+          const btnCrop = element.querySelector('.uie-mockup-tile-btn-crop');
+          const btnOffset = element.querySelector('.uie-mockup-tile-btn-offset');
+          const btnBW = element.querySelector('.uie-mockup-tile-btn-bw');
+          const btnMag = element.querySelector('.uie-mockup-tile-btn-magnet');
+          const img = element.querySelector('.uie-mockup-tile-img');
 
-        const img = element.querySelector('.uie-mockup-tile-img');
+          if (btnCrop && btnOffset && img) {
 
-        if (btnCrop && btnOffset && img) {
+            moveTile(element, btnCrop, btnOffset);
+            offsetImg(img, element, btnOffset);
 
-          moveTile(element, btnCrop, btnOffset);
-          offsetImg(img, element, btnOffset);
-
-          /**
+            /**
            * Magnetize to related Layer
            */
-          btnMag.addEventListener('click', (e) => {
-            e.preventDefault();
-            const target = e.currentTarget;
-            const parent = target.closest('.uie-mockup-tile');
+            btnMag.addEventListener('click', (e) => {
+              e.preventDefault();
+              const target = e.currentTarget;
+              const parent = target.closest('.uie-mockup-tile');
 
-            const tmpEl = document.createElement('div');
+              const tmpEl = document.createElement('div');
 
-            tmpEl.classList.add('uie-tpm-position');
-            tmpEl.style.position = 'absolute';
-            tmpEl.style.top = parent.style.top;
-            tmpEl.style.left = parent.style.left;
-            tmpEl.style.display = 'block';
-            tmpEl.style.width = '1px';
-            tmpEl.style.height = '1px';
-            document.body.appendChild(tmpEl);
-            Magnetize(tmpEl, parent, dbID);
-            tmpEl.remove();
-            parent.focus();
-          });
+              tmpEl.classList.add('uie-tpm-position');
+              tmpEl.style.position = 'absolute';
+              tmpEl.style.top = parent.style.top;
+              tmpEl.style.left = parent.style.left;
+              tmpEl.style.display = 'block';
+              tmpEl.style.width = '1px';
+              tmpEl.style.height = '1px';
+              document.body.appendChild(tmpEl);
+              Magnetize(tmpEl, parent, dbID);
+              tmpEl.remove();
+              parent.focus();
+            });
 
-          /**
+            /**
            * Grayscale Image
            */
-          btnBW.addEventListener('click', (e) => {
-            e.preventDefault();
-            const target = e.currentTarget;
-            const parent = target.closest('.uie-mockup-tile');
-            target.classList.toggle('active');
-            const grayscale = parent.classList.toggle('grayscale');
+            btnBW.addEventListener('click', (e) => {
+              e.preventDefault();
+              const target = e.currentTarget;
+              const parent = target.closest('.uie-mockup-tile');
+              target.classList.toggle('active');
+              const grayscale = parent.classList.toggle('grayscale');
 
-            DB.update('mockup', parent.id, { grayscale });
-          });
+              DB.update('mockup', parent.id, { grayscale });
+            });
 
-          /**
+            /**
            * Crop
            */
-          btnCrop.addEventListener('click', (e) => {
-            e.preventDefault();
-            const target = e.currentTarget;
-            const toggle = target.classList.toggle('active');
-            const parent = target.closest('.uie-mockup-tile');
-            parent.classList.remove('crop');
+            btnCrop.addEventListener('click', (e) => {
+              e.preventDefault();
+              const target = e.currentTarget;
+              const toggle = target.classList.toggle('active');
+              const parent = target.closest('.uie-mockup-tile');
+              parent.classList.remove('crop');
 
-            if (toggle) {
-              btnOffset.classList.remove('active');
-              parent.classList.add('crop'); // ref: https://stackoverflow.com/questions/8960193/how-to-make-html-element-resizable-using-pure-javascript
-            }
-          });
+              if (toggle) {
+                btnOffset.classList.remove('active');
+                parent.classList.add('crop'); // ref: https://stackoverflow.com/questions/8960193/how-to-make-html-element-resizable-using-pure-javascript
+              }
+            });
 
-          /**
+            /**
            * Offset
            */
-          btnOffset.addEventListener('click', (e) => {
-            e.preventDefault();
-            const target = e.currentTarget;
-            const toggle = target.classList.toggle('active');
-            const parent = target.closest('.uie-mockup-tile');
-            parent.classList.remove('crop');
+            btnOffset.addEventListener('click', (e) => {
+              e.preventDefault();
+              const target = e.currentTarget;
+              const toggle = target.classList.toggle('active');
+              const parent = target.closest('.uie-mockup-tile');
+              parent.classList.remove('crop');
 
-            if (toggle) {
-              btnCrop.classList.remove('active');
-            }
-          });
+              if (toggle) {
+                btnCrop.classList.remove('active');
+              }
+            });
 
-          /**
+            /**
            * Focus / Blur Element
            */
-          element.addEventListener('focus', (e) => {
-            element.classList.add('active');
-          });
+            element.addEventListener('focus', (e) => {
+              element.classList.add('active');
+            });
 
-          element.addEventListener('blur', (e) => {
-            if (!e.currentTarget.contains(e.relatedTarget)) {
-              element.classList.remove('active');
-              enableKeyboard();
-            } else {
-              element.focus();
-            }
-          });
+            element.addEventListener('blur', (e) => {
+              if (!e.currentTarget.contains(e.relatedTarget)) {
+                element.classList.remove('active');
+                enableKeyboard();
+              } else {
+                element.focus();
+              }
+            });
 
-          let btnCtrl = false;
-          document.addEventListener('keydown', (e) => {
-            btnCtrl = false;
-
-            if (e.ctrlKey) {
-              btnCtrl = true;
-            };
-          });
-
-          document.addEventListener('keypress', (e) => {
-            if (e.ctrlKey) {
-              btnCtrl = true;
-            }
-          });
-
-          document.addEventListener('keyup', (e) => {
-            if (!e.ctrlKey) {
+            let btnCtrl = false;
+            document.addEventListener('keydown', (e) => {
               btnCtrl = false;
-            }
-          });
 
-          /**
+              if (e.ctrlKey) {
+                btnCtrl = true;
+              };
+            });
+
+            document.addEventListener('keypress', (e) => {
+              if (e.ctrlKey) {
+                btnCtrl = true;
+              }
+            });
+
+            document.addEventListener('keyup', (e) => {
+              if (!e.ctrlKey) {
+                btnCtrl = false;
+              }
+            });
+
+            /**
            * Keypress
            */
-          element.addEventListener('keydown', (e) => {
-            disableKeyboard();
-            switch (e.keyCode) {
+            element.addEventListener('keydown', (e) => {
+              disableKeyboard();
+              switch (e.keyCode) {
 
-              // Arrows
-              case 38:
-                if (btnCtrl) {
-                  element.style.top = element.offsetTop - 10 + 'px';
-                } else {
-                  element.style.top = element.offsetTop - 1 + 'px';
-                }
-                break;
+                // Arrows
+                case 38:
+                  if (btnCtrl) {
+                    element.style.top = element.offsetTop - 10 + 'px';
+                  } else {
+                    element.style.top = element.offsetTop - 1 + 'px';
+                  }
+                  break;
 
-              case 40:
-                if (btnCtrl) {
-                  element.style.top = element.offsetTop + 10 + 'px';
-                } else {
-                  element.style.top = element.offsetTop + 1 + 'px';
-                }
-                break;
+                case 40:
+                  if (btnCtrl) {
+                    element.style.top = element.offsetTop + 10 + 'px';
+                  } else {
+                    element.style.top = element.offsetTop + 1 + 'px';
+                  }
+                  break;
 
-              case 37:
-                if (btnCtrl) {
-                  element.style.left = element.offsetLeft - 10 + 'px';
-                } else {
-                  element.style.left = element.offsetLeft - 1 + 'px';
-                }
-                break;
+                case 37:
+                  if (btnCtrl) {
+                    element.style.left = element.offsetLeft - 10 + 'px';
+                  } else {
+                    element.style.left = element.offsetLeft - 1 + 'px';
+                  }
+                  break;
 
-              case 39:
-                if (btnCtrl) {
-                  element.style.left = element.offsetLeft + 10 + 'px';
-                } else {
-                  element.style.left = element.offsetLeft + 1 + 'px';
-                }
-                break;
+                case 39:
+                  if (btnCtrl) {
+                    element.style.left = element.offsetLeft + 10 + 'px';
+                  } else {
+                    element.style.left = element.offsetLeft + 1 + 'px';
+                  }
+                  break;
 
-              // Opacity
-              case 48:
-                if (btnCtrl) {
-                  element.style.zIndex = 10000;
-                } else {
-                  img.style.opacity = '1';
-                }
-                break;
-              case 49:
-                if (btnCtrl) {
-                  element.style.zIndex = 0;
-                } else {
-                  img.style.opacity = '0.1';
-                }
-                break;
-              case 50:
-                if (btnCtrl) {
-                  element.style.zIndex = 200;
-                } else {
-                  img.style.opacity = '0.2';
-                }
-                break;
-              case 51:
-                if (btnCtrl) {
-                  element.style.zIndex = 300;
-                } else {
-                  img.style.opacity = '0.3';
-                }
-                break;
-              case 52:
-                if (btnCtrl) {
-                  element.style.zIndex = 400;
-                } else {
-                  img.style.opacity = '0.4';
-                }
-                break;
-              case 53:
-                if (btnCtrl) {
-                  element.style.zIndex = 500;
-                } else {
-                  img.style.opacity = '0.5';
-                }
-                break;
-              case 54:
-                if (btnCtrl) {
-                  element.style.zIndex = 600;
-                } else {
-                  img.style.opacity = '0.6';
-                }
-                break;
-              case 55:
-                if (btnCtrl) {
-                  element.style.zIndex = 700;
-                } else {
-                  img.style.opacity = '0.7';
-                }
-                break;
-              case 56:
-                if (btnCtrl) {
-                  element.style.zIndex = 800;
-                } else {
-                  img.style.opacity = '0.8';
-                }
-                break;
-              case 57:
-                if (btnCtrl) {
-                  element.style.zIndex = 1000;
-                } else {
-                  img.style.opacity = '0.9';
-                }
-                break;
+                // Opacity
+                case 48:
+                  if (btnCtrl) {
+                    element.style.zIndex = 10000;
+                  } else {
+                    img.style.opacity = '1';
+                  }
+                  break;
+                case 49:
+                  if (btnCtrl) {
+                    element.style.zIndex = 0;
+                  } else {
+                    img.style.opacity = '0.1';
+                  }
+                  break;
+                case 50:
+                  if (btnCtrl) {
+                    element.style.zIndex = 200;
+                  } else {
+                    img.style.opacity = '0.2';
+                  }
+                  break;
+                case 51:
+                  if (btnCtrl) {
+                    element.style.zIndex = 300;
+                  } else {
+                    img.style.opacity = '0.3';
+                  }
+                  break;
+                case 52:
+                  if (btnCtrl) {
+                    element.style.zIndex = 400;
+                  } else {
+                    img.style.opacity = '0.4';
+                  }
+                  break;
+                case 53:
+                  if (btnCtrl) {
+                    element.style.zIndex = 500;
+                  } else {
+                    img.style.opacity = '0.5';
+                  }
+                  break;
+                case 54:
+                  if (btnCtrl) {
+                    element.style.zIndex = 600;
+                  } else {
+                    img.style.opacity = '0.6';
+                  }
+                  break;
+                case 55:
+                  if (btnCtrl) {
+                    element.style.zIndex = 700;
+                  } else {
+                    img.style.opacity = '0.7';
+                  }
+                  break;
+                case 56:
+                  if (btnCtrl) {
+                    element.style.zIndex = 800;
+                  } else {
+                    img.style.opacity = '0.8';
+                  }
+                  break;
+                case 57:
+                  if (btnCtrl) {
+                    element.style.zIndex = 1000;
+                  } else {
+                    img.style.opacity = '0.9';
+                  }
+                  break;
 
-              default:
-                break;
-            }
+                default:
+                  break;
+              }
 
-            const key = element.id;
-            DB.update(dbID, key, { position: { left: element.offsetLeft, top: element.offsetTop } });
-            DB.update(dbID, key, { opacity: img.style.opacity });
-            DB.update(dbID, key, { zindex: parseInt(element.style.zIndex) });
+              const key = element.id;
+              DB.update(dbID, key, { position: { left: element.offsetLeft, top: element.offsetTop } });
+              DB.update(dbID, key, { opacity: img.style.opacity });
+              DB.update(dbID, key, { zindex: parseInt(element.style.zIndex) });
 
-            // 38 Up
-            // 40 Down
-            // 37 left
-            // 39 Right
-          });
+              // 38 Up
+              // 40 Down
+              // 37 left
+              // 39 Right
+            });
 
-          element.addEventListener('keyup', (e) => {
-            enableKeyboard();
-          });
-        }
-
+            element.addEventListener('keyup', (e) => {
+              enableKeyboard();
+            });
+          }
+        } // if element
       }); // mockupTile.forEach(element => {
     }
   }
@@ -509,7 +509,7 @@ function renderMockupTiles(styles, tile) {
 
         newTpl.shadowRoot.innerHTML = styles + tpl(tile, {
           '${id}': uid,
-          '${active}': node.active ? '' : ' hide ',
+          '${tilestatus}': getTileStatus(node.status),
           'https://${src}': node.thumb,
           '${styles}': `style="width:${node.crop.width}px; height:${node.crop.height}px; top: ${node.position.top}px; left: ${node.position.left}px; z-index: ${node.zindex}"`,
           '${imgstyle}': `style="opacity:${node.opacity}; top: ${node.offset.top}px; left: ${node.offset.left}px;"`,
@@ -534,5 +534,26 @@ function removeElements(className) {
   elements.forEach(item => {
     item.parentElement.removeChild(item);
   });
+}
 
+/**
+ * Get tile status Class Name
+ *
+ * @param {*} status
+ */
+function getTileStatus(status) {
+  switch (status) {
+    case '1':
+      return ' hide ';
+      break;
+    case '2':
+      return '';
+      break;
+    case '3':
+      return ' noevents ';
+      break;
+    default:
+      return '';
+      break;
+  }
 }

@@ -1,6 +1,6 @@
 # UI Explorer
 
-[![License:MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/andreymatin/ui-explorer/LICENSE)
+[![License:MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://github.com/frontend-layers/ui-explorer/LICENSE)
 [![npm](https://img.shields.io/npm/v/ui-explorer.svg)](https://www.npmjs.com/package/ui-explorer)
 
 _UI Explorer for Designers and Frontend Developers_
@@ -63,7 +63,7 @@ import 'ui-explorer';
 |-----------------------------|-------------------------|
 | <kbd>Ctrl</kbd><kbd>~</kbd> | Show/Hide Outlines      |
 
-### Mockup Hotkeys
+### Mockup Hotkeys on active Tile
 
 | Keys                                                 | Action                        |
 |------------------------------------------------------|-------------------------------|
@@ -74,4 +74,4 @@ import 'ui-explorer';
 
 ## Contributing
 
-For issues, bugs or imporvements please open an [issue](https://github.com/andreymatin/ui-explorer/issues/new)
+For issues, bugs or imporvements please open an [issue](https://github.com/frontend-layers/ui-explorer/issues/new)
